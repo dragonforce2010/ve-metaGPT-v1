@@ -6,7 +6,13 @@
 @File    : __init__.py
 """
 
-from metagpt.provider.google_gemini_api import GeminiLLM
+try:
+    from metagpt.provider.google_gemini_api import GeminiLLM
+    HAS_GEMINI = True
+except ImportError:
+    # google-generativeai is not compatible with protobuf 6.x
+    HAS_GEMINI = False
+
 from metagpt.provider.ollama_api import OllamaLLM
 from metagpt.provider.openai_api import OpenAILLM
 from metagpt.provider.zhipuai_api import ZhiPuAILLM
@@ -22,7 +28,6 @@ from metagpt.provider.ark_api import ArkLLM
 from metagpt.provider.openrouter_reasoning import OpenrouterReasoningLLM
 
 __all__ = [
-    "GeminiLLM",
     "OpenAILLM",
     "ZhiPuAILLM",
     "AzureOpenAILLM",
@@ -37,3 +42,6 @@ __all__ = [
     "ArkLLM",
     "OpenrouterReasoningLLM",
 ]
+
+if HAS_GEMINI:
+    __all__.append("GeminiLLM")
