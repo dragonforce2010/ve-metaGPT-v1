@@ -61,7 +61,7 @@ extras_require["test"] = [
     "aioboto3~=12.4.0",
     "gradio==3.0.0",
     "google-api-core==2.17.1",
-    "protobuf~=4.25.5",
+    "protobuf>=4.21.0,<7.0.0",
     "pylint==3.0.3",
     "pybrowsers",
 ]
@@ -69,11 +69,11 @@ extras_require["test"] = [
 extras_require["pyppeteer"] = [
     "pyppeteer>=1.0.2"
 ]  # pyppeteer is unmaintained and there are conflicts with dependencies
-extras_require["dev"] = (["pylint~=3.0.3", "black~=23.3.0", "isort~=5.12.0", "pre-commit~=3.6.0"],)
+extras_require["dev"] = ["pylint~=3.0.3", "black~=23.3.0", "isort~=5.12.0", "pre-commit~=3.6.0"]
 extras_require["android_assistant"] = [
     "pyshine==0.0.9",
     "opencv-python==4.6.0.66",
-    "protobuf<3.20,>=3.9.2",
+    "protobuf>=4.21.0,<7.0.0",
     "modelscope",
     "tensorflow==2.9.1; os_name == 'linux'",
     "tensorflow==2.9.1; os_name == 'win32'",
@@ -96,18 +96,18 @@ extras_require["android_assistant"] = [
 ]
 
 setup(
-    name="metagpt",
-    version="1.0.0",
-    description="The Multi-Agent Framework",
+    name="ve_metagpt",
+    version="1.0.3",
+    description="Fork MetaGPT Update Version - Python 3.13 Compatible",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/geekan/MetaGPT",
-    author="Alexander Wu",
+    author="Ian Yu",
     author_email="alexanderwu@deepwisdom.ai",
     license="MIT",
     keywords="metagpt multi-agent multi-role programming gpt llm metaprogramming",
     packages=find_packages(exclude=["contrib", "docs", "examples", "tests*"]),
-    python_requires=">=3.9, <3.12",
+    python_requires=">=3.12,<3.15",
     install_requires=requirements,
     extras_require=extras_require,
     cmdclass={
