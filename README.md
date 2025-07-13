@@ -51,8 +51,31 @@
 
 ### Installation
 
-> Ensure that Python 3.9 or later, but less than 3.12, is installed on your system. You can check this by using: `python --version`.  
-> You can use conda like this: `conda create -n metagpt python=3.9 && conda activate metagpt`
+> Ensure that Python 3.12 or later, but less than 3.15, is installed on your system. You can check this by using: `python --version`.  
+
+#### 🚀 Recommended: Using UV (Fast & Modern)
+
+This project now uses [uv](https://github.com/astral-sh/uv) for dependency management. UV is significantly faster than pip and provides better dependency resolution.
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# or: brew install uv
+
+# Clone and setup the project
+git clone https://github.com/geekan/MetaGPT
+cd MetaGPT
+
+# Automated setup (recommended)
+chmod +x setup_dev.sh
+./setup_dev.sh
+
+# Manual setup
+uv sync                    # Install dependencies
+source .venv/bin/activate  # Activate environment
+```
+
+#### Traditional Installation
 
 ```bash
 pip install --upgrade metagpt
@@ -61,6 +84,8 @@ pip install --upgrade metagpt
 ```
 
 **Install [node](https://nodejs.org/en/download) and [pnpm](https://pnpm.io/installation#using-npm) before actual use.**
+
+📖 For detailed UV usage guide, see [UV_USAGE.md](UV_USAGE.md)
 
 For detailed installation guidance, please refer to [cli_install](https://docs.deepwisdom.ai/main/en/guide/get_started/installation.html#install-stable-version)
  or [docker_install](https://docs.deepwisdom.ai/main/en/guide/get_started/installation.html#install-with-docker)
@@ -88,6 +113,10 @@ llm:
 After installation, you can use MetaGPT at CLI
 
 ```bash
+# With UV (recommended)
+uv run metagpt "Create a 2048 game"  # this will create a repo in ./workspace
+
+# Traditional
 metagpt "Create a 2048 game"  # this will create a repo in ./workspace
 ```
 
@@ -99,6 +128,19 @@ from metagpt.utils.project_repo import ProjectRepo
 
 repo: ProjectRepo = generate_repo("Create a 2048 game")  # or ProjectRepo("<path>")
 print(repo)  # it will print the repo structure with files
+```
+
+#### Quick Examples
+
+```bash
+# Run the crawl webpage example
+uv run python examples/di/crawl_webpage.py
+
+# Run tests
+uv run pytest
+
+# Add new dependencies
+uv add requests beautifulsoup4
 ```
 
 You can also use [Data Interpreter](https://github.com/geekan/MetaGPT/tree/main/examples/di) to write code:
